@@ -1,15 +1,16 @@
 
 import React, { useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
-import { THEME } from '../constants';
+import { useTheme } from '../src/theme';
 
 export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    service: 'General',
+    service: 'Consulta',
     message: ''
   });
+  const { currentTheme } = useTheme();
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,53 +41,54 @@ export const Contact: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div>
-            <h2 className="text-4xl font-extrabold text-gray-900 mb-8">Hablemos</h2>
-            <p className="text-lg text-gray-600 mb-12 leading-relaxed">
-              ¿Tienes dudas sobre nuestros servicios o quieres agendar una sesión? Completa el formulario y nuestro equipo te contactará en menos de 24 horas laborables.
+            <h2 className="text-4xl font-extrabold mb-8" style={{ color: currentTheme.textColor }}>Hablemos</h2>
+            <p className="text-lg mb-12 leading-relaxed" style={{ color: currentTheme.textColor, opacity: 0.85 }}>
+              ¿Tienes un proyecto en mente? Cuéntanos tus necesidades y te ayudaremos a crear la web perfecta para tu negocio. Nuestro equipo te contactará en menos de 24 horas.
             </p>
 
             <div className="space-y-8">
               <div className="flex items-center gap-6">
-                <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 text-xl">
-                  <i className="fa-solid fa-phone"></i>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-xl" style={{ backgroundColor: `${currentTheme.primaryColor}20`, color: currentTheme.primaryColor }}>
+                  <i className="fa-solid fa-envelope"></i>
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">Llámanos</p>
-                  <p className="text-xl font-bold text-gray-900">+34 912 345 678</p>
+                  <p className="text-sm font-bold uppercase tracking-widest" style={{ color: currentTheme.textColor, opacity: 0.6 }}>Email</p>
+                  <p className="text-xl font-bold" style={{ color: currentTheme.textColor }}>contacto@novorgroup.com</p>
                 </div>
               </div>
               
               <div className="flex items-center gap-6">
-                <div className="w-14 h-14 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 text-xl">
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-xl" style={{ backgroundColor: `${currentTheme.primaryColor}20`, color: currentTheme.primaryColor }}>
                   <i className="fa-brands fa-whatsapp"></i>
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">WhatsApp</p>
-                  <p className="text-xl font-bold text-gray-900">Disponible 9:00 - 18:00</p>
+                  <p className="text-sm font-bold uppercase tracking-widest" style={{ color: currentTheme.textColor, opacity: 0.6 }}>WhatsApp</p>
+                  <p className="text-xl font-bold" style={{ color: currentTheme.textColor }}>Disponible 9:00 - 18:00</p>
                 </div>
               </div>
 
-              <div className="bg-gray-900 rounded-3xl p-8 text-white mt-12 relative overflow-hidden">
+              <div className="rounded-3xl p-8 text-white mt-12 relative overflow-hidden" style={{ backgroundImage: `linear-gradient(135deg, ${currentTheme.primaryColor}, ${currentTheme.secondaryColor})` }}>
                 <div className="relative z-10">
-                  <h4 className="text-xl font-bold mb-4">Soporte Urgente</h4>
-                  <p className="text-gray-400 mb-6">Si estás pasando por una crisis grave, por favor contacta con el Teléfono de la Esperanza: 717 003 717.</p>
-                  <a href="tel:717003717" className="inline-block px-6 py-3 bg-red-500 rounded-xl font-bold hover:bg-red-600 transition-colors">Llamar Ahora</a>
+                  <h4 className="text-xl font-bold mb-4">¿Urgencia?</h4>
+                  <p className="text-white opacity-90 mb-6">Si necesitas una respuesta inmediata, contáctanos por WhatsApp para atención rápida.</p>
+                  <a href="https://wa.me/34912345678" className="inline-block px-6 py-3 bg-white rounded-xl font-bold transition-colors" style={{ color: currentTheme.primaryColor }}>Enviar WhatsApp</a>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-[3rem] p-10 shadow-2xl shadow-blue-100 border border-gray-100">
+          <div className="rounded-[3rem] p-10 shadow-2xl border" style={{ backgroundColor: currentTheme.backgroundColor, borderColor: currentTheme.lineColor }}>
             {status === 'success' ? (
               <div className="text-center py-20">
-                <div className="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-4xl mx-auto mb-6">
+                <div className="w-20 h-20 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 text-white" style={{ backgroundColor: currentTheme.primaryColor }}>
                   <i className="fa-solid fa-check"></i>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">¡Mensaje Recibido!</h3>
-                <p className="text-gray-600 mb-8">Gracias por confiar en Lumina Wellness. Nos pondremos en contacto contigo pronto.</p>
+                <h3 className="text-2xl font-bold mb-4" style={{ color: currentTheme.textColor }}>¡Mensaje Recibido!</h3>
+                <p className="mb-8" style={{ color: currentTheme.textColor, opacity: 0.85 }}>Gracias por confiar en Novor Group. Nos pondremos en contacto contigo pronto.</p>
                 <button 
                   onClick={() => setStatus('idle')}
-                  className="text-blue-600 font-bold hover:underline"
+                  className="font-bold hover:underline"
+                  style={{ color: currentTheme.primaryColor }}
                 >
                   Enviar otro mensaje
                 </button>
@@ -94,61 +96,65 @@ export const Contact: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Nombre Completo</label>
+                  <label className="block text-sm font-bold mb-2" style={{ color: currentTheme.textColor }}>Nombre Completo</label>
                   <input 
                     type="text" 
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     placeholder="Ej. Juan Pérez"
-                    className="w-full bg-gray-50 border border-gray-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                    className="w-full border rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 transition-all"
+                    style={{ backgroundColor: currentTheme.backgroundBlurred, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Correo Electrónico</label>
+                  <label className="block text-sm font-bold mb-2" style={{ color: currentTheme.textColor }}>Correo Electrónico</label>
                   <input 
                     type="email" 
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     placeholder="juan@ejemplo.com"
-                    className="w-full bg-gray-50 border border-gray-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                    className="w-full border rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 transition-all"
+                    style={{ backgroundColor: currentTheme.backgroundBlurred, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Servicio de Interés</label>
+                  <label className="block text-sm font-bold mb-2" style={{ color: currentTheme.textColor }}>¿Qué tipo de proyecto tienes en mente?</label>
                   <select 
                     value={formData.service}
                     onChange={(e) => setFormData({...formData, service: e.target.value})}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                    className="w-full border rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 transition-all"
+                    style={{ backgroundColor: currentTheme.backgroundBlurred, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
                   >
-                    <option value="General">Consulta General</option>
-                    <option value="Individual">Terapia Individual</option>
-                    <option value="Grupal">Talleres Grupales</option>
-                    <option value="Coaching">Coaching Ejecutivo</option>
+                    <option value="Consulta">Consulta General</option>
+                    <option value="Web">Diseño Web Personalizado</option>
+                    <option value="Ecommerce">E-commerce / Tienda Online</option>
+                    <option value="Mantenimiento">Mantenimiento & Soporte</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">¿Cómo podemos ayudarte?</label>
+                  <label className="block text-sm font-bold mb-2" style={{ color: currentTheme.textColor }}>Cuéntanos sobre tu proyecto</label>
                   <textarea 
                     rows={4}
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    placeholder="Cuéntanos brevemente qué buscas..."
-                    className="w-full bg-gray-50 border border-gray-200 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none"
+                    placeholder="Describe brevemente tu idea y necesidades..."
+                    className="w-full border rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 transition-all resize-none"
+                    style={{ backgroundColor: currentTheme.backgroundBlurred, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
                   ></textarea>
                 </div>
-                <button 
+                <button
                   disabled={status === 'loading'}
                   type="submit"
                   className="w-full py-5 rounded-2xl text-white font-bold text-lg shadow-xl transition-all active:scale-95 disabled:opacity-50"
-                  style={{ backgroundColor: THEME.primaryColor }}
+                  style={{ backgroundColor: currentTheme.primaryColor }}
                 >
-                  {status === 'loading' ? 'Enviando...' : 'Enviar Mensaje'}
+                  {status === 'loading' ? 'Enviando...' : 'Solicitar Presupuesto'}
                 </button>
                 {status === 'error' && (
-                  <p className="text-red-500 text-center text-sm font-medium">Hubo un error al enviar el mensaje. Inténtalo de nuevo.</p>
+                  <p className="text-center text-sm font-medium" style={{ color: currentTheme.primaryColor, opacity: 0.8 }}>Hubo un error al enviar el mensaje. Inténtalo de nuevo.</p>
                 )}
               </form>
             )}

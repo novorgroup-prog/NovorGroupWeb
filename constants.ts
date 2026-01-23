@@ -9,14 +9,26 @@ export const THEMES = {
     secondaryColor: '#10B981', // Verde Bienestar
     accentColor: '#F59E0B',    // Ambar Energía
     backgroundColor: '#F9FAFB', // Gris Claro Neutro
-    textColor: '#111827'
+    secondaryBackgroundColor: '#eeeeee',
+    textColor: '#111827',
+    backgroundBlurred: 'bg-white/80',
+    lineColor: 'rgba(154, 154, 154, 0.12)',
+    shadow:'shadow-sm',
+    shadowColor: 'rgba(202, 202, 202, 0.1)',
+    homeImage:'/src/img/ChatGPT Image 23 ene 2026, 16_12_46.png'
   },
   dark: {
     primaryColor: '#0EA5FF',   // Azul Eléctrico para dark
     secondaryColor: '#059669',
     accentColor: '#F59E0B',
-    backgroundColor: '#1e1e1e', // Fondo oscuro
-    textColor: '#E5E7EB'
+    backgroundColor: '#1d1d1d', // Fondo oscuro
+    secondaryBackgroundColor: '#111111',
+    textColor: '#E5E7EB',
+    backgroundBlurred: 'bg-dark/80',
+    lineColor: 'rgba(255,255,255,0.12)',
+    shadow: 'shadow-md',
+    shadowColor: 'rgba(0, 0, 0, 0.63)',
+    homeImage:'/src/img/ales-nesetril-Im7lZjxeLhg-unsplash.jpg'
   }
 };
 
@@ -25,11 +37,11 @@ export const THEME = THEMES.light;
 
 export const SITE_CONFIG = {
   name: 'Novor Group',
-  description: 'Acompañamiento profesional para tu equilibrio emocional y crecimiento personal.',
-  contactEmail: 'novorgroup@gmail.com',
+  description: 'Desarrollo de webs personalizadas que venden. Diseño estratégico, SEO y conversión.',
+  contactEmail: 'contacto@novorgroup.com',
   social: {
-    instagram: 'https://instagram.com/lumina.wellness',
-    linkedin: 'https://linkedin.com/company/lumina-wellness'
+    instagram: 'https://instagram.com/novorgroup',
+    linkedin: 'https://linkedin.com/company/novor-group'
   }
 };
 
