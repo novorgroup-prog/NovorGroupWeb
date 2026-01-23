@@ -1,0 +1,8 @@
+
+{
+  "name": "Lumina Wellness - Portal de Bienestar",
+  "description": "Una plataforma integral de servicios de bienestar y salud mental con asistente de IA y gestión de reservas vía Supabase.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
