@@ -67,11 +67,11 @@ export const Contact: React.FC = () => {
                 </div>
               </div>
 
-              <div className="rounded-3xl p-8 text-white mt-12 relative overflow-hidden" style={{ backgroundImage: `linear-gradient(135deg, ${currentTheme.primaryColor}, ${currentTheme.secondaryColor})` }}>
+              <div className="rounded-3xl p-8 text-white mt-12 relative overflow-hidden" style={{ backgroundImage: `linear-gradient(135deg, ${currentTheme.gradientPrimary}, ${currentTheme.gradientSecondary})` }}>
                 <div className="relative z-10">
                   <h4 className="text-xl font-bold mb-4">¿Urgencia?</h4>
                   <p className="text-white opacity-90 mb-6">Si necesitas una respuesta inmediata, contáctanos por WhatsApp para atención rápida.</p>
-                  <a href="https://wa.me/34912345678" className="inline-block px-6 py-3 bg-white rounded-xl font-bold transition-colors" style={{ color: currentTheme.primaryColor }}>Enviar WhatsApp</a>
+                  <a href="https://wa.me/34912345678" className="inline-block px-6 py-3 rounded-xl font-bold transition-colors" style={{ color: currentTheme.textColor, backgroundColor: currentTheme.backgroundColor }}>Enviar WhatsApp</a>
                 </div>
               </div>
             </div>
@@ -104,7 +104,7 @@ export const Contact: React.FC = () => {
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     placeholder="Ej. Juan Pérez"
                     className="w-full border rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 transition-all"
-                    style={{ backgroundColor: currentTheme.backgroundBlurred, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
+                    style={{ backgroundColor: currentTheme.backgroundColor, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
                   />
                 </div>
                 <div>
@@ -116,7 +116,7 @@ export const Contact: React.FC = () => {
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     placeholder="juan@ejemplo.com"
                     className="w-full border rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 transition-all"
-                    style={{ backgroundColor: currentTheme.backgroundBlurred, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
+                    style={{ backgroundColor: currentTheme.backgroundColor, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
                   />
                 </div>
                 <div>
@@ -125,7 +125,7 @@ export const Contact: React.FC = () => {
                     value={formData.service}
                     onChange={(e) => setFormData({...formData, service: e.target.value})}
                     className="w-full border rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 transition-all"
-                    style={{ backgroundColor: currentTheme.backgroundBlurred, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
+                    style={{ backgroundColor: currentTheme.backgroundColor, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
                   >
                     <option value="Consulta">Consulta General</option>
                     <option value="Web">Diseño Web Personalizado</option>
@@ -142,7 +142,7 @@ export const Contact: React.FC = () => {
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                     placeholder="Describe brevemente tu idea y necesidades..."
                     className="w-full border rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 transition-all resize-none"
-                    style={{ backgroundColor: currentTheme.backgroundBlurred, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
+                    style={{ backgroundColor: currentTheme.backgroundColor, borderColor: currentTheme.lineColor, color: currentTheme.textColor, '--tw-ring-color': currentTheme.primaryColor } as any}
                   ></textarea>
                 </div>
                 <button

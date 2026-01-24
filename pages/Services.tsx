@@ -79,7 +79,7 @@ export const Services: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-20 rounded-[3rem] p-12 text-white relative overflow-hidden" style={{ backgroundImage: `linear-gradient(135deg, ${currentTheme.primaryColor}, ${currentTheme.secondaryColor})` }}>
+        <div className="mt-20 rounded-[3rem] p-12 text-white relative overflow-hidden" style={{ backgroundImage: `linear-gradient(135deg, ${currentTheme.gradientPrimary}, ${currentTheme.gradientSecondary})` }}>
           <div className="absolute top-0 right-0 p-8 opacity-10">
             <i className="fa-solid fa-rocket text-[10rem]"></i>
           </div>

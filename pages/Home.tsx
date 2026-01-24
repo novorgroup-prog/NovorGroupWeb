@@ -2,9 +2,17 @@
 import React from 'react';
 import { Route } from '../constants';
 import { useTheme } from '../src/theme';
+import { useInView } from '../src/hooks/useInView';
+import '../src/styles/animations.css';
 
 export const Home: React.FC = () => {
   const { currentTheme } = useTheme();
+  const whatOfferRef = useInView();
+  const forWhoRef = useInView();
+  const whyUsRef = useInView();
+  const testimonialsRef = useInView();
+  const statsRef = useInView();
+  const ctaRef = useInView();
 
   return (
     <div>
@@ -75,7 +83,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* ¿QUÉ OFRECES? */}
-      <section className="py-24" style={{ backgroundColor: currentTheme.backgroundBlurred }}>
+      <section ref={whatOfferRef.ref} className={`py-24 transition-all duration-700 ${whatOfferRef.isInView ? 'animate-fade-in-up' : 'opacity-0-init'}`} style={{ backgroundColor: currentTheme.backgroundBlurred }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="text-4xl font-extrabold mb-6" style={{ color: currentTheme.textColor }}>¿Qué ofrecemos?</h2>
@@ -106,21 +114,21 @@ export const Home: React.FC = () => {
       </section>
 
       {/* ¿PARA QUIÉN? */}
-      <section className="py-24">
+      <section ref={forWhoRef.ref} className={`py-24 transition-all duration-700 ${forWhoRef.isInView ? 'animate-fade-in-up' : 'opacity-0-init'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="text-4xl font-extrabold mb-6" style={{ color: currentTheme.textColor }}>¿Para quién?</h2>
             <p className="text-xl" style={{ color: currentTheme.textColor, opacity: 0.85 }}>
-              Diseñado para e-commerce, agencias, SaaS y emprendedores que quieren crecer con una web que vende.
+              Webs a medida para autónomos, tiendas pequeñas y empresas que necesitan presencia online profesional con mantenimiento continuo.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              { persona: 'E-commerce Stores', desc: 'Tiendas online que necesitan aumentar conversiones con diseño profesional y UX optimizado.', needs: ['Diseño responsivo', 'Integración Stripe/PayPal', 'Carrito abandonado recovery'] },
-              { persona: 'Agencias Digitales', desc: 'Socios en proyectos web complejos. Entramos como tu equipo backend especializado.', needs: ['Escalabilidad', 'Documentación clara', 'Soporte prioritario'] },
-              { persona: 'SaaS & Startups', desc: 'Webs impactantes que atrapan inversores. SEO optimizado y diseño que convierte visitantes en clientes.', needs: ['Landing pages', 'Blog corporativo', 'Analytics integrado'] },
-              { persona: 'Profesionales & Emprendedores', desc: 'Tu presencia online profesional. Portafolio, servicios o productos. Todo en una web que representa tu marca.', needs: ['Portfolio elegante', 'Formularios de contacto', 'Blog integrado'] },
+              { persona: 'Autónomos & Freelancers', desc: 'Tu presencia profesional online. Portfolio, servicios, formularios de contacto. Una web que genera clientes automáticamente.', needs: ['Portfolio elegante', 'Contacto directo', 'Mantenimiento incluido'] },
+              { persona: 'Tiendas Pequeñas & Locales', desc: 'Tu tienda online profesional. Productos, carrito de compra, pasarela de pago segura. Vende sin depender de intermediarios.', needs: ['Tienda online', 'Pasarelas de pago', 'Soporte continuo'] },
+              { persona: 'Pequeñas Empresas', desc: 'Presencia corporativa que genera confianza. Catálogo de servicios, contacto y atracción de clientes. Todo integrado en una web.', needs: ['Sitio corporativo', 'Gestión de contenidos', 'Mantenimiento gratis'] },
+              { persona: 'Negocios en Crecimiento', desc: 'Una web que crece con tu negocio. Hoy catálogo, mañana tienda online. Infraestructura escalable desde el inicio.', needs: ['Base sólida', 'Escalabilidad', 'Soporte premium'] },
             ].map((audience, idx) => (
               <div key={idx} className="p-8 rounded-3xl border" style={{ backgroundColor: currentTheme.backgroundColor, borderColor: currentTheme.lineColor }}>
                 <div className="flex items-start gap-4">
@@ -144,7 +152,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Why Us Section - ¿POR QUÉ TÚ? */}
-      <section className="py-24" style={{ backgroundColor: currentTheme.backgroundBlurred }}>
+      <section ref={whyUsRef.ref} className={`py-24 transition-all duration-700 ${whyUsRef.isInView ? 'animate-fade-in-up' : 'opacity-0-init'}`} style={{ backgroundColor: currentTheme.backgroundBlurred }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="text-4xl font-extrabold mb-6" style={{ color: currentTheme.textColor }}>¿Por qué Novor Group?</h2>
@@ -155,10 +163,10 @@ export const Home: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: 'Equipo Full-Stack', desc: 'Desarrolladores, diseñadores y especialistas en conversion. 50+ años experiencia combinada.', icon: 'fa-code', color: currentTheme.primaryColor },
+              { title: 'Equipo Full-Stack', desc: 'Desarrolladores, diseñadores y especialistas en conversion.', icon: 'fa-code', color: currentTheme.primaryColor },
               { title: 'SEO Desde el Inicio', desc: 'Estructura optimizada, velocidad de carga <2s, core web vitals perfectos. Primeras posiciones garantizadas.', icon: 'fa-search', color: currentTheme.secondaryColor },
               { title: 'Diseño que Convierte', desc: 'UX/UI basado en psicología del consumidor. Cada elemento tiene un objetivo: vender o captar leads.', icon: 'fa-palette', color: currentTheme.accentColor },
-              { title: 'Soporte Premium', desc: 'No te abandonamos al lanzar. Asistencia técnica prioritaria, updates gratis y mejoras continuas.', icon: 'fa-headset', color: currentTheme.primaryColor },
+              { title: 'Soporte Premium', desc: 'No te abandonamos al lanzar. Asistencia técnica prioritaria, updates y mejoras continuas.', icon: 'fa-headset', color: currentTheme.primaryColor },
               { title: 'Analítica Avanzada', desc: 'Dashboard en tiempo real. Entiende cada visitor, dónde viene, qué hace, si compra. Datos = dinero.', icon: 'fa-chart-line', color: currentTheme.secondaryColor },
               { title: 'Tecnología Moderno', desc: 'React, Node.js, bases de datos escalables. Infraestructura que crece con tu negocio sin pagar demás.', icon: 'fa-microchip', color: currentTheme.accentColor },
             ].map((item, idx) => (
@@ -175,7 +183,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Testimonios y Casos de Éxito */}
-      <section className="py-24">
+      <section ref={testimonialsRef.ref} className={`py-24 transition-all duration-700 ${testimonialsRef.isInView ? 'animate-fade-in-up' : 'opacity-0-init'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <h2 className="text-4xl font-extrabold mb-6" style={{ color: currentTheme.textColor }}>Casos de Éxito</h2>
@@ -213,7 +221,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* Estadísticas y Garantía */}
-      <section className="py-24" style={{ backgroundColor: currentTheme.backgroundBlurred }}>
+      <section ref={statsRef.ref} className={`py-24 transition-all duration-700 ${statsRef.isInView ? 'animate-fade-in-up' : 'opacity-0-init'}`} style={{ backgroundColor: currentTheme.backgroundBlurred }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
             {[
@@ -232,7 +240,7 @@ export const Home: React.FC = () => {
             ))}
           </div>
 
-          <div className="bg-gradient-to-r p-10 rounded-3xl text-center text-white" style={{ backgroundImage: `linear-gradient(135deg, ${currentTheme.primaryColor}, ${currentTheme.secondaryColor})` }}>
+          <div className="bg-gradient-to-r p-10 rounded-3xl text-center text-white" style={{ backgroundImage: `linear-gradient(135deg, ${currentTheme.gradientPrimary}, ${currentTheme.gradientSecondary})` }}>
             <h3 className="text-2xl font-bold mb-3">Garantía: Tu Web Vende o Te Devolvemos tu Dinero</h3>
             <p className="mb-6 opacity-90">Si en 60 días no tienes conversiones medibles, revisamos gratis hasta lograrlas. Tu éxito es el nuestro.</p>
             <div className="space-x-4">
@@ -245,7 +253,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* CTA Final */}
-      <section className="py-24">
+      <section ref={ctaRef.ref} className={`py-24 transition-all duration-700 ${ctaRef.isInView ? 'animate-fade-in-up' : 'opacity-0-init'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-extrabold mb-6" style={{ color: currentTheme.textColor }}>Tu web perfecta está a un paso</h2>
           <p className="text-xl mb-10 max-w-2xl mx-auto" style={{ color: currentTheme.textColor, opacity: 0.85 }}>

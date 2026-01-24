@@ -31,7 +31,7 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <a href="#" className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white" style={{ backgroundColor: currentTheme.primaryColor }}>
-              <i className="fa-solid fa-sparkles text-lg"></i>
+              <img src="/src/img/logos/novor_Logo_White.png" className="w-5 h-6" alt="Logo" />
             </div>
             <span className="text-2xl font-bold tracking-tight" style={{ color: currentTheme.textColor }}>Novor <span style={{ color: currentTheme.primaryColor }}>Group</span></span>
           </a>
@@ -76,17 +76,17 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white" style={{ backgroundColor: currentTheme.primaryColor }}>
-                <i className="fa-solid fa-sparkles"></i>
+                <img src="/src/img/logos/novor_Logo_White.png" className="w-5 h-6 mx-auto" alt="Logo" />
               </div>
               <span className="text-xl font-bold" style={{ color: currentTheme.textColor }}>Novor Group</span>
             </div>
             <p className="mb-6" style={{ color: currentTheme.textColor, opacity: 0.85 }}>Desarrollo de webs personalizadas que venden. Expertos en diseño y estrategia digital.</p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity" style={{ backgroundColor: currentTheme.primaryColor }}>
-                <i className="fa-brands fa-instagram"></i>
+                <i className="fa-brands fa-instagram text-white"></i>
               </a>
               <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity" style={{ backgroundColor: currentTheme.primaryColor }}>
-                <i className="fa-brands fa-linkedin"></i>
+                <i className="fa-brands fa-linkedin text-white"></i>
               </a>
             </div>
           </div>
