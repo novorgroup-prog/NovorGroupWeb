@@ -18,7 +18,7 @@ export const Home: React.FC = () => {
     <div>
       {/* Hero Section */}
       <section className="relative overflow-hidden py-24 sm:py-32">
-        <div className="absolute inset-0 -z-10" style={{ backgroundColor: currentTheme.backgroundColor }} />
+        <div className="absolute inset-0 -z-10" style={{ backgroundColor: currentTheme.backgroundColor, transition: 'background-color 0.3s' }} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="inline-block px-4 py-1.5 rounded-full font-semibold text-sm mb-6 border" style={{ backgroundColor: `${currentTheme.primaryColor}15`, color: currentTheme.primaryColor, borderColor: `${currentTheme.primaryColor}30` }}>
@@ -32,14 +32,14 @@ export const Home: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href={`#${Route.CONTACT}`}
+                href={Route.CONTACT}
                 className="px-8 py-4 rounded-2xl text-white font-bold text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
                 style={{ backgroundColor: currentTheme.primaryColor }}
               >
                 Solicitar Presupuesto
               </a>
               <a 
-                href={`#${Route.CONTACT}`}
+                href={Route.CONTACT}
                 className="px-8 py-4 rounded-2xl font-bold text-center border transition-all"
                 style={{ backgroundColor: `${currentTheme.primaryColor}10`, color: currentTheme.primaryColor, borderColor: currentTheme.primaryColor }}
               >
@@ -261,14 +261,14 @@ export const Home: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href={`#${Route.CONTACT}`}
+              href={Route.CONTACT}
               className="px-10 py-5 rounded-2xl text-white font-bold text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
               style={{ backgroundColor: currentTheme.primaryColor }}
             >
               Solicitar Presupuesto
             </a>
             <a 
-              href={`#${Route.CONTACT}`}
+              href={Route.CONTACT}
               className="px-10 py-5 rounded-2xl font-bold text-center border transition-all"
               style={{ backgroundColor: `${currentTheme.primaryColor}10`, color: currentTheme.primaryColor, borderColor: currentTheme.primaryColor }}
             >
@@ -276,7 +276,7 @@ export const Home: React.FC = () => {
             </a>
           </div>
           <p className="text-sm mt-8" style={{ color: currentTheme.textColor, opacity: 0.6 }}>
-            Consulta inicial gratis: 30 minutos. Sin compromiso.
+            Consulta inicial gratis, sin compromiso.
           </p>
         </div>
       </section>

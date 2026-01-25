@@ -1,7 +1,7 @@
 
-# 🌟 Lumina Wellness - Portal de Bienestar Moderno
+# 🌟 Novor Group - Webs que venden
 
-Este proyecto es una aplicación web de vanguardia diseñada para **Lumina Wellness**, enfocada en la captación de clientes y prestación de servicios de salud mental. Utiliza un stack moderno para garantizar rendimiento, escalabilidad y facilidad de mantenimiento.
+Este proyecto es una aplicación web de vanguardia diseñada para **Novor Group**, enfocada en la captación de clientes y prestación de servicios de salud mental. Utiliza un stack moderno para garantizar rendimiento, escalabilidad y facilidad de mantenimiento.
 
 ## 🚀 Stack Tecnológico
 

@@ -60,5 +60,6 @@ export enum Route {
   SERVICES = '/servicios',
   CONTACT = '/contacto',
   LEGAL = '/legal',
-  AI_ASSISTANT = '/asistente-ia'
+  AI_ASSISTANT = '/asistente-ia',
+  DEMOS = '/demos'
 }

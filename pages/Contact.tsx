@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { useTheme } from '../src/theme';
 
@@ -12,6 +12,19 @@ export const Contact: React.FC = () => {
   });
   const { currentTheme } = useTheme();
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  // Obtener parámetros de URL para pre-llenar el formulario
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const designParam = params.get('design');
+    
+    if (designParam) {
+      setFormData(prev => ({
+        ...prev,
+        message: designParam
+      }));
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,7 +66,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-bold uppercase tracking-widest" style={{ color: currentTheme.textColor, opacity: 0.6 }}>Email</p>
-                  <p className="text-xl font-bold" style={{ color: currentTheme.textColor }}>contacto@novorgroup.com</p>
+                  <p className="text-xl font-bold" style={{ color: currentTheme.textColor }}>novorgroup@gmail.com</p>
                 </div>
               </div>
               

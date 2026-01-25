@@ -11,7 +11,7 @@ const NavLinkInner: React.FC<{ to: string; children: ReactNode; theme: any }> = 
   const [hover, setHover] = useState(false);
   return (
     <a
-      href={`#${to}`}
+      href={to}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className="font-medium transition-colors"
@@ -29,7 +29,7 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-50 backdrop-blur-md border-b" style={{ backgroundColor: currentTheme.backgroundBlurred, color: currentTheme.textColor, borderColor:currentTheme.lineColor }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white" style={{ backgroundColor: currentTheme.primaryColor }}>
               <img src="/src/img/logos/novor_Logo_White.png" className="w-5 h-6" alt="Logo" />
             </div>
@@ -39,10 +39,10 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
           <nav className="hidden md:flex items-center gap-8">
             <NavLinkInner to={Route.HOME} theme={currentTheme}>Inicio</NavLinkInner>
             <NavLinkInner to={Route.SERVICES} theme={currentTheme}>Servicios</NavLinkInner>
-            <NavLinkInner to={Route.AI_ASSISTANT} theme={currentTheme}>Asistente IA</NavLinkInner>
+            <NavLinkInner to={Route.DEMOS} theme={currentTheme}>Demos</NavLinkInner>
             <NavLinkInner to={Route.CONTACT} theme={currentTheme}>Contacto</NavLinkInner>
             <a
-              href={`#${Route.CONTACT}`}
+              href={Route.CONTACT}
               className="px-6 py-2.5 rounded-full text-white font-semibold transition-all hover:shadow-lg active:scale-95"
               style={{ backgroundColor: currentTheme.primaryColor }}
             >
@@ -94,19 +94,19 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
           <div>
             <h4 className="text-lg font-bold mb-6" style={{ color: currentTheme.textColor }}>Navegación</h4>
             <ul className="space-y-4">
-              <li><a href={`#${Route.HOME}`} style={{ color: currentTheme.textColor }} className="transition-colors">Inicio</a></li>
-              <li><a href={`#${Route.SERVICES}`} style={{ color: currentTheme.textColor }} className="transition-colors">Servicios</a></li>
-              <li><a href={`#${Route.AI_ASSISTANT}`} style={{ color: currentTheme.textColor }} className="transition-colors">Asistente IA</a></li>
-              <li><a href={`#${Route.CONTACT}`} style={{ color: currentTheme.textColor }} className="transition-colors">Contacto</a></li>
+              <li><a href={Route.HOME} style={{ color: currentTheme.textColor }} className="transition-colors">Inicio</a></li>
+              <li><a href={Route.SERVICES} style={{ color: currentTheme.textColor }} className="transition-colors">Servicios</a></li>
+              <li><a href={Route.AI_ASSISTANT} style={{ color: currentTheme.textColor }} className="transition-colors">Asistente IA</a></li>
+              <li><a href={Route.CONTACT} style={{ color: currentTheme.textColor }} className="transition-colors">Contacto</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-bold mb-6" style={{ color: currentTheme.textColor }}>Legal</h4>
             <ul className="space-y-4">
-              <li><a href={`#${Route.LEGAL}`} style={{ color: currentTheme.textColor }} className="transition-colors">Aviso Legal</a></li>
-              <li><a href={`#${Route.LEGAL}`} style={{ color: currentTheme.textColor }} className="transition-colors">Política de Privacidad</a></li>
-              <li><a href={`#${Route.LEGAL}`} style={{ color: currentTheme.textColor }} className="transition-colors">Cookies</a></li>
+              <li><a href={Route.LEGAL} style={{ color: currentTheme.textColor }} className="transition-colors">Aviso Legal</a></li>
+              <li><a href={Route.LEGAL} style={{ color: currentTheme.textColor }} className="transition-colors">Política de Privacidad</a></li>
+              <li><a href={Route.LEGAL} style={{ color: currentTheme.textColor }} className="transition-colors">Cookies</a></li>
             </ul>
           </div>
 
@@ -115,11 +115,11 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
             <ul className="space-y-4">
               <li className="flex items-center gap-3">
                 <i className="fa-solid fa-envelope" style={{ color: currentTheme.primaryColor }}></i>
-                <span>contacto@novorgroup.com</span>
+                <span>novorgroup@gmail.com</span>
               </li>
               <li className="flex items-center gap-3">
                 <i className="fa-solid fa-globe" style={{ color: currentTheme.primaryColor }}></i>
-                <span>www.novorgroup.com</span>
+                <a href="https://novorgroup.com/contacto" className="text-white">novorgroup.com/contacto</a>
               </li>
             </ul>
           </div>
