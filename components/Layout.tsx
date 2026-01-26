@@ -39,14 +39,14 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
     try {
       localStorage.setItem('cookiesAccepted', 'true');
       setShowCookies(false);
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const handleRejectCookies = () => {
     try {
       localStorage.setItem('cookiesAccepted', 'rejected');
       setShowCookies(false);
-    } catch (e) {}
+    } catch (e) { }
   };
 
   useEffect(() => {
@@ -64,7 +64,13 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="sticky top-0 z-50 backdrop-blur-md border-b" style={{ backgroundColor: currentTheme.backgroundBlurred, color: currentTheme.textColor, borderColor:currentTheme.lineColor }}>
+      <header
+        className={`sticky top-0 z-50 backdrop-blur-md border-b ${!showMobileMenu ? currentTheme.backgroundBlurred : ''}`}
+        style={{
+          backgroundColor: showMobileMenu ? currentTheme.backgroundColor : undefined,
+          color: currentTheme.textColor,
+          borderColor: currentTheme.lineColor
+        }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white" style={{ backgroundColor: currentTheme.primaryColor }}>
@@ -72,7 +78,7 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
             </div>
             <span className="text-2xl font-bold tracking-tight" style={{ color: currentTheme.textColor }}>Novor <span style={{ color: currentTheme.primaryColor }}>Group</span></span>
           </a>
-          
+
           <nav className="hidden md:flex items-center gap-8">
             <NavLinkInner to={Route.HOME} theme={currentTheme}>Inicio</NavLinkInner>
             <NavLinkInner to={Route.SERVICES} theme={currentTheme}>Servicios</NavLinkInner>
@@ -97,8 +103,8 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
               <i className={`fa-solid ${themeMode === 'light' ? 'fa-moon' : 'fa-sun'}`}></i>
             </button>
 
-            <button 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               style={{ color: currentTheme.textColor }}
               className="md:hidden"
             >
@@ -111,21 +117,21 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
 
       {showMobileMenu && (
         <>
-          <div 
-            className="absolute inset-0 z-30"
-            style={{ backgroundColor: currentTheme.backgroundColor,opacity: 0.8 }}
+          <div
+            className="fixed inset-0 z-30"
+            style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
             onClick={() => setMobileMenuOpen(false)}
           ></div>
-          <nav 
-            className="md:hidden border-b absolute top-20 z-40 overflow-hidden inset-x-0 h-50"
-            style={{ 
-              backgroundColor: currentTheme.secondaryBackgroundColor, 
-              borderColor: currentTheme.lineColor, 
+          <nav
+            className="md:hidden border-b fixed top-20 left-0 right-0 z-40 overflow-hidden"
+            style={{
+              backgroundColor: currentTheme.secondaryBackgroundColor,
+              borderColor: currentTheme.lineColor,
               animation: mobileMenuOpen ? 'slideDown 0.7s ease-out' : 'slideUp 0.7s ease-out',
               pointerEvents: mobileMenuOpen ? 'auto' : 'none'
             }}
           >
-            <style>{`
+              <style>{`
               @keyframes slideDown {
                 from {
                   transform: translateY(-500px);
@@ -143,49 +149,49 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
                 }
               }
             `}</style>
-            <div className="px-4 py-4 space-y-3">
-              <a 
-                href={Route.HOME} 
-                className="block py-2 transition-colors"
-                style={{ color: currentTheme.textColor }}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Inicio
-              </a>
-              <a 
-                href={Route.SERVICES} 
-                className="block py-2 transition-colors"
-                style={{ color: currentTheme.textColor }}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Servicios
-              </a>
-              <a 
-                href={Route.DEMOS} 
-                className="block py-2 transition-colors"
-                style={{ color: currentTheme.textColor }}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Demos
-              </a>
-              <a 
-                href={Route.CONTACT} 
-                className="block py-2 transition-colors"
-                style={{ color: currentTheme.textColor }}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contacto
-              </a>
-              <a
-                href={Route.CONTACT}
-                className="block w-full py-2.5 rounded-lg text-center text-white font-semibold transition-all mt-4"
-                style={{ backgroundColor: currentTheme.primaryColor }}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Solicitar Presupuesto
-              </a>
-            </div>
-          </nav>
+              <div className="px-4 py-4 space-y-3">
+                <a
+                  href={Route.HOME}
+                  className="block py-2 transition-colors"
+                  style={{ color: currentTheme.textColor }}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Inicio
+                </a>
+                <a
+                  href={Route.SERVICES}
+                  className="block py-2 transition-colors"
+                  style={{ color: currentTheme.textColor }}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Servicios
+                </a>
+                <a
+                  href={Route.DEMOS}
+                  className="block py-2 transition-colors"
+                  style={{ color: currentTheme.textColor }}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Demos
+                </a>
+                <a
+                  href={Route.CONTACT}
+                  className="block py-2 transition-colors"
+                  style={{ color: currentTheme.textColor }}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contacto
+                </a>
+                <a
+                  href={Route.CONTACT}
+                  className="block w-full py-2.5 rounded-lg text-center text-white font-semibold transition-all mt-4"
+                  style={{ backgroundColor: currentTheme.primaryColor }}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Solicitar Presupuesto
+                </a>
+              </div>
+            </nav>
         </>
       )}
 
@@ -212,7 +218,7 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
               </a>
             </div>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-bold mb-6" style={{ color: currentTheme.textColor }}>Navegación</h4>
             <ul className="space-y-4">
@@ -246,7 +252,7 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
             </ul>
           </div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 border-t pt-8 text-center text-sm" style={{ borderTopColor: currentTheme.lineColor, color: currentTheme.textColor, opacity: 0.8 }}>
           &copy; {new Date().getFullYear()} Novor Group. Todos los derechos reservados.
         </div>
