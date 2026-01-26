@@ -9,6 +9,7 @@ interface Demo {
   description: string;
   image: string;
   style: string;
+  background: string;
 }
 
 export const Demos: React.FC = () => {
@@ -21,21 +22,24 @@ export const Demos: React.FC = () => {
       name: 'Minimalista Tech',
       description: 'Diseño limpio y moderno. Perfecto para startups y agencias de software.',
       image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop',
-      style: 'Consulta por diseño Minimalista Tech'
+      style: 'Consulta por diseño Minimalista Tech',
+      background:'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
     },
     {
       id: 'luxury-premium',
       name: 'Lujo Premium',
       description: 'Elegancia y sofisticación. Ideal para marcas de lujo, joyería y consultoría.',
       image: 'https://images.unsplash.com/photo-1522869635100-ce306f98b5c2?w=400&h=300&fit=crop',
-      style: 'Consulta por diseño Lujo Premium'
+      style: 'Consulta por diseño Lujo Premium',
+      background:'linear-gradient(135deg, #1a1a1a 0%, #2a2520 100%)',
     },
     {
       id: 'vibrant-creative',
       name: 'Vibrant Creativo',
-      description: 'Colores audaces y dinámicos. Para agencias creativas, diseñadores y artistas.',
+      description: 'Colores dinámicos para agencias creativas, diseñadores y artistas.',
       image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop',
-      style: 'Consulta por diseño Vibrant Creativo'
+      style: 'Consulta por diseño Vibrant Creativo',
+      background:'linear-gradient(135deg, #fff5f7 0%, #ffb703 20%, #fb5607 40%, #ff006e 60%, #8338ec 80%, #3a86ff 100%)',
     }
   ];
 
@@ -72,13 +76,61 @@ export const Demos: React.FC = () => {
                 }}
               >
                 {/* Image - Clickeable */}
-                <a href={`/demo/${demo.id}`} className="block relative overflow-hidden h-48 bg-gray-200">
-                  <img 
-                    src={demo.image} 
-                    alt={demo.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <a href={`/demo/${demo.id}`} className="block relative overflow-hidden h-48 group-hover:brightness-110 transition-all" style={{ background: demo.background }}>
+                  <div className="absolute inset-0" style={{ display:'flex', alignItems:'center', justifyContent:'center' }}>
+                  {(() => {
+                    switch(demo.id) {
+                    case 'minimal-tech':
+                      return <h4 
+                        style={{
+                            padding: '0.875rem 2rem',
+                            backgroundColor: 'transparent',
+                            color: '#0066ff',
+                            border: '2px solid #0066ff',
+                            borderRadius: '0.375rem',
+                            fontSize: '1rem',
+                            fontWeight: 600,
+                            cursor: 'pointer',
+                            transition: 'all 0.3s'
+                          }}
+                      >{demo.name}</h4>;
+                    case 'luxury-premium':
+                      return <h4 
+                        style={{
+                          padding: '1rem 3rem',
+                          backgroundColor: '#d4af37',
+                          color: '#0f0e0e',
+                          border: 'none',
+                          borderRadius: 0,
+                          fontSize: '0.875rem',
+                          fontWeight: 700,
+                          letterSpacing: '2px',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s',
+                          fontFamily: 'Georgia, serif'
+                        }}
+                      >{demo.name}</h4>;
+                    case 'vibrant-creative':
+                      return <h4 
+                        style={{
+                          padding: '1rem 2rem',
+                          background: 'linear-gradient(135deg, #ff006e, #8338ec)',
+                          color: 'white',
+                          border: '2px solid white',
+                          borderRadius: '1rem',
+                          fontSize: '1rem',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          transition: 'all 0.3s',
+                          textTransform: 'uppercase',
+                          letterSpacing: '1px'
+                      }}
+                    >{demo.name}</h4>;
+                    default:
+                      return null;
+                    }
+                  })()}
+                  </div>
                 </a>
 
                 {/* Content */}

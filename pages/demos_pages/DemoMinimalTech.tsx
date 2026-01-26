@@ -16,6 +16,7 @@ export const DemoMinimalTech: React.FC = () => {
             {/* Hero */}
             <section style={{
                 minHeight: '100vh',
+                display: 'flex',
                 alignItems: 'center',
             }}>
                 <div style={{ display: 'flex', maxWidth: '1200px', margin: '0 auto', padding: '2rem 2rem', width: '100%' }}>
