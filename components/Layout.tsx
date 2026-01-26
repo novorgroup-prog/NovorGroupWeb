@@ -24,6 +24,27 @@ const NavLinkInner: React.FC<{ to: string; children: ReactNode; theme: any }> = 
 
 const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
   const { currentTheme, themeMode, setThemeMode } = useTheme();
+  const [showCookies, setShowCookies] = useState(() => {
+    try {
+      return !localStorage.getItem('cookiesAccepted');
+    } catch (e) {
+      return true;
+    }
+  });
+
+  const handleAcceptCookies = () => {
+    try {
+      localStorage.setItem('cookiesAccepted', 'true');
+      setShowCookies(false);
+    } catch (e) {}
+  };
+
+  const handleRejectCookies = () => {
+    try {
+      localStorage.setItem('cookiesAccepted', 'rejected');
+      setShowCookies(false);
+    } catch (e) {}
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -96,7 +117,7 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
             <ul className="space-y-4">
               <li><a href={Route.HOME} style={{ color: currentTheme.textColor }} className="transition-colors">Inicio</a></li>
               <li><a href={Route.SERVICES} style={{ color: currentTheme.textColor }} className="transition-colors">Servicios</a></li>
-              <li><a href={Route.AI_ASSISTANT} style={{ color: currentTheme.textColor }} className="transition-colors">Asistente IA</a></li>
+              <li><a href={Route.DEMOS} style={{ color: currentTheme.textColor }} className="transition-colors">Demos</a></li>
               <li><a href={Route.CONTACT} style={{ color: currentTheme.textColor }} className="transition-colors">Contacto</a></li>
             </ul>
           </div>
@@ -119,7 +140,7 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
               </li>
               <li className="flex items-center gap-3">
                 <i className="fa-solid fa-globe" style={{ color: currentTheme.primaryColor }}></i>
-                <a href="https://novorgroup.com/contacto" className="text-white">novorgroup.com/contacto</a>
+                <a href="https://novorgroup.com/contacto" style={{ color: currentTheme.textColor }}>novorgroup.com/contacto</a>
               </li>
             </ul>
           </div>
@@ -129,6 +150,48 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
           &copy; {new Date().getFullYear()} Novor Group. Todos los derechos reservados.
         </div>
       </footer>
+
+      {showCookies && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 p-4 flex justify-center">
+          <div className="w-3/4 p-6 rounded-lg backdrop-blur-md border transition-all" style={{
+            backgroundColor: currentTheme.gradientPrimary,
+            borderColor: currentTheme.lineColor,
+            color: '#fff'
+          }}>
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
+                <h3 className="text-lg font-bold mb-2">🍪 Cookies y Privacidad</h3>
+                <p className="text-sm opacity-85">
+                  Utilizamos cookies para mejorar tu experiencia en nuestro sitio. Al continuar navegando, aceptas nuestra{' '}
+                  <a href={Route.LEGAL} className="underline font-semibold" style={{ color: currentTheme.primaryColor }}>
+                    política de privacidad
+                  </a>.
+                </p>
+              </div>
+              <div className="flex gap-3 flex-shrink-0">
+                <button
+                  onClick={handleRejectCookies}
+                  className="px-4 py-2 rounded-lg text-sm font-medium transition-colors border"
+                  style={{
+                    borderColor: currentTheme.primaryColor == "#0066ff" ? '#fff' : currentTheme.primaryColor,
+                    color: currentTheme.primaryColor == "#0066ff" ? '#fff' : currentTheme.primaryColor,
+                    backgroundColor: currentTheme.gradientPrimary
+                  }}
+                >
+                  Rechazar
+                </button>
+                <button
+                  onClick={handleAcceptCookies}
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-white transition-all hover:shadow-lg active:scale-95"
+                  style={{ backgroundColor: '#0EA5FF' }}
+                >
+                  Aceptar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

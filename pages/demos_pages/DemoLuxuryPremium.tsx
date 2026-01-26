@@ -33,7 +33,7 @@ export const DemoLuxuryPremium: React.FC = () => {
             <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem', position: 'sticky', top: '5rem', right: '2rem', zIndex: 100 }}>
                 {/* Botón Solicitar */}
                 <RequestButton
-                    href="/contacto?design=Consulta por diseño Minimalista Tech"
+                    href="/contacto?design=Consulta por diseño Luxury Premium"
                     label="Solicitar Diseño"
                     style="minimal"
                 />
