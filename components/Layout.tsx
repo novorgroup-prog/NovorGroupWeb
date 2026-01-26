@@ -1,7 +1,8 @@
 
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import { Route } from '../constants';
 import { ThemeProvider, useTheme } from '../src/theme';
+import { relative } from 'path';
 
 interface LayoutProps {
   children: ReactNode;
@@ -24,6 +25,8 @@ const NavLinkInner: React.FC<{ to: string; children: ReactNode; theme: any }> = 
 
 const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
   const { currentTheme, themeMode, setThemeMode } = useTheme();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showCookies, setShowCookies] = useState(() => {
     try {
       return !localStorage.getItem('cookiesAccepted');
@@ -45,6 +48,19 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
       setShowCookies(false);
     } catch (e) {}
   };
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      setShowMobileMenu(true);
+      document.body.style.overflow = 'hidden';
+    } else {
+      const timer = setTimeout(() => {
+        setShowMobileMenu(false);
+      }, 500);
+      document.body.style.overflow = 'unset';
+      return () => clearTimeout(timer);
+    }
+  }, [mobileMenuOpen]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -75,18 +91,103 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
             <button
               onClick={() => setThemeMode(m => m === 'light' ? 'dark' : 'light')}
               aria-label="Cambiar tema"
-              className="hidden md:inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-opacity-5 transition-colors"
+              className="md:inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-opacity-5 transition-colors"
               style={{ color: currentTheme.textColor }}
             >
               <i className={`fa-solid ${themeMode === 'light' ? 'fa-moon' : 'fa-sun'}`}></i>
             </button>
 
-            <button className="md:hidden" style={{ color: currentTheme.textColor }}>
-              <i className="fa-solid fa-bars text-2xl"></i>
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+              style={{ color: currentTheme.textColor }}
+              className="md:hidden"
+            >
+
+              <i className={`fa-solid ${mobileMenuOpen ? 'fa-xmark' : 'fa-bars'} text-2xl`}></i>
             </button>
           </div>
         </div>
       </header>
+
+      {showMobileMenu && (
+        <>
+          <div 
+            className="absolute inset-0 z-30"
+            style={{ backgroundColor: currentTheme.backgroundColor,opacity: 0.8 }}
+            onClick={() => setMobileMenuOpen(false)}
+          ></div>
+          <nav 
+            className="md:hidden border-b absolute top-20 z-40 overflow-hidden inset-x-0 h-50"
+            style={{ 
+              backgroundColor: currentTheme.secondaryBackgroundColor, 
+              borderColor: currentTheme.lineColor, 
+              animation: mobileMenuOpen ? 'slideDown 0.7s ease-out' : 'slideUp 0.7s ease-out',
+              pointerEvents: mobileMenuOpen ? 'auto' : 'none'
+            }}
+          >
+            <style>{`
+              @keyframes slideDown {
+                from {
+                  transform: translateY(-500px);
+                }
+                to {
+                  transform: translateY(0);
+                }
+              }
+              @keyframes slideUp {
+                from {
+                  transform: translateY(0);
+                }
+                to {
+                  transform: translateY(-500px);
+                }
+              }
+            `}</style>
+            <div className="px-4 py-4 space-y-3">
+              <a 
+                href={Route.HOME} 
+                className="block py-2 transition-colors"
+                style={{ color: currentTheme.textColor }}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Inicio
+              </a>
+              <a 
+                href={Route.SERVICES} 
+                className="block py-2 transition-colors"
+                style={{ color: currentTheme.textColor }}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Servicios
+              </a>
+              <a 
+                href={Route.DEMOS} 
+                className="block py-2 transition-colors"
+                style={{ color: currentTheme.textColor }}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Demos
+              </a>
+              <a 
+                href={Route.CONTACT} 
+                className="block py-2 transition-colors"
+                style={{ color: currentTheme.textColor }}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contacto
+              </a>
+              <a
+                href={Route.CONTACT}
+                className="block w-full py-2.5 rounded-lg text-center text-white font-semibold transition-all mt-4"
+                style={{ backgroundColor: currentTheme.primaryColor }}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Solicitar Presupuesto
+              </a>
+            </div>
+          </nav>
+        </>
+      )}
 
       <main className="flex-grow">
         {children}
