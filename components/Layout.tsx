@@ -2,13 +2,13 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import { Route } from '../constants';
 import { ThemeProvider, useTheme } from '../src/theme';
-import { relative } from 'path';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 const NavLinkInner: React.FC<{ to: string; children: ReactNode; theme: any }> = ({ to, children, theme }) => {
+  const isActive = window.location.pathname === to
   const [hover, setHover] = useState(false);
   return (
     <a
@@ -16,7 +16,10 @@ const NavLinkInner: React.FC<{ to: string; children: ReactNode; theme: any }> = 
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className="font-medium transition-colors"
-      style={{ color: hover ? theme.primaryColor : theme.textColor }}
+      style={{ 
+        color: isActive ? theme.primaryColor : hover ? `${theme.primaryColor}c6` : theme.textColor,
+        borderBottom: isActive ? hover ? `2px solid ${theme.primaryColor}` : `2px solid ${theme.primaryColor}` : '2px solid transparent',
+      }}
     >
       {children}
     </a>

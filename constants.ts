@@ -23,12 +23,12 @@ export const THEMES = {
     tertiaryLogo:'/src/img/logos/novor_Vertical_Black.png',
   },
   dark: {
-    primaryColor: '#0EA5FF',   // Azul Eléctrico para dark
+    primaryColor: '#008ada',   // Azul Eléctrico para dark
     secondaryColor: '#059669',
     accentColor: '#F59E0B',
     backgroundColor: '#1d1d1d', // Fondo oscuro
     secondaryBackgroundColor: '#111111',
-    gradientPrimary:'#0041a3',
+    gradientPrimary:'#004ec4',
     gradientSecondary:'#0c7b56',
     textColor: '#E5E7EB',
     backgroundBlurred: 'bg-dark/80',
