@@ -12,6 +12,59 @@ export const Contact: React.FC = () => {
   });
   const { currentTheme } = useTheme();
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
+
+  // Funciones de validación
+  const validateName = (name: string): string => {
+    if (!name.trim()) return 'El nombre es requerido';
+    if (name.trim().length < 2) return 'El nombre debe tener al menos 2 caracteres';
+    if (name.trim().length > 50) return 'El nombre no puede exceder 50 caracteres';
+    if (!/^[a-záéíóúñ\s]+$/i.test(name.trim())) return 'El nombre solo puede contener letras y espacios';
+    return '';
+  };
+
+  const validateEmail = (email: string): string => {
+    if (!email.trim()) return 'El email es requerido';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) return 'Ingresa un email válido';
+    if (email.trim().length > 100) return 'El email no puede exceder 100 caracteres';
+    return '';
+  };
+
+  const validateMessage = (message: string): string => {
+    if (!message.trim()) return 'El mensaje es requerido';
+    if (message.trim().length < 10) return 'El mensaje debe tener al menos 10 caracteres';
+    if (message.trim().length > 1000) return 'El mensaje no puede exceder 1000 caracteres';
+    return '';
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: {[key: string]: string} = {};
+    
+    const nameError = validateName(formData.name);
+    if (nameError) newErrors.name = nameError;
+
+    const emailError = validateEmail(formData.email);
+    if (emailError) newErrors.email = emailError;
+
+    const messageError = validateMessage(formData.message);
+    if (messageError) newErrors.message = messageError;
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleFieldChange = (field: string, value: string) => {
+    setFormData(prev => ({...prev, [field]: value}));
+    // Limpiar el error del campo cuando comienza a escribir
+    if (errors[field]) {
+      setErrors(prev => {
+        const newErrors = {...prev};
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+  };
 
   // Obtener parámetros de URL para pre-llenar el formulario
   useEffect(() => {
@@ -28,21 +81,27 @@ export const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
     setStatus('loading');
 
     try {
       const { error } = await supabase
         .from('leads')
         .insert([{
-          full_name: formData.name,
-          email: formData.email,
+          full_name: formData.name.trim(),
+          email: formData.email.trim(),
           service_interest: formData.service,
-          message: formData.message
+          message: formData.message.trim()
         }]);
 
       if (error) throw error;
       setStatus('success');
       setFormData({ name: '', email: '', service: 'General', message: '' });
+      setErrors({});
     } catch (err) {
       console.error('Error submitting form:', err);
       setStatus('error');

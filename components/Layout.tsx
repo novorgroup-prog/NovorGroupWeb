@@ -62,6 +62,18 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
     }
   }, [mobileMenuOpen]);
 
+  // Cerrar el menú móvil cuando se redimensiona la ventana a tamaño desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [mobileMenuOpen]);
+
   return (
     <div className="min-h-screen flex flex-col">
       <header
@@ -118,7 +130,7 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
       {showMobileMenu && (
         <>
           <div
-            className="fixed inset-0 z-30"
+            className="md:hidden fixed inset-0 z-30"
             style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
             onClick={() => setMobileMenuOpen(false)}
           ></div>
