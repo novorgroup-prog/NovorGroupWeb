@@ -17,22 +17,21 @@ export const DemoVibrantCreative: React.FC = () => {
                 top: 0,
                 zIndex: 50,
                 padding: '1.5rem 2rem',
-                display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 backgroundColor: '#fff5f7',
                 borderBottom: '3px solid #ff006e'
-            }}>
-                <h1 style={{
+            }} className="flex-column md:flex">
+                <h2 style={{
                     fontSize: '1.75rem',
                     fontWeight: 800,
                     background: 'linear-gradient(135deg, #ff006e, #8338ec)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent'
-                }}>
+                }} className="text-center md:text-left md:inline block">
                     VIBE
-                </h1>
-                <nav style={{ display: 'flex', gap: '2rem' }}>
+                </h2>
+                <nav style={{ display: 'flex', gap: '2rem' }} className="justify-center">
                     {['Inicio', 'Portafolio', 'Contacto'].map((item) => (
                         <a key={item} href="#" style={{
                             fontWeight: 600,
@@ -40,13 +39,13 @@ export const DemoVibrantCreative: React.FC = () => {
                             textDecoration: 'none',
                             fontSize: '0.95rem',
                             transition: 'all 0.3s'
-                        }}>
+                        }} className="flex-1 md:flex-none text-center md:text-left">
                             {item}
                         </a>
                     ))}
                 </nav>
             </header>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem', position: 'sticky', top: '5rem', right: '2rem', zIndex: 100 }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem', position: 'sticky', top: '7rem', right: '2rem', zIndex: 100 }}>
                 {/* Botón Solicitar */}
                 <RequestButton
                     href="/contacto?design=Consulta por diseño Vibrante Creativo"
@@ -75,15 +74,16 @@ export const DemoVibrantCreative: React.FC = () => {
         `}</style>
 
                 <div style={{ maxWidth: '900px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 10 }}>
-                    <div style={{
+                    <div className="flex flex-col content-center align-center md:flex-none" 
+                        style={{
                         backgroundColor: 'rgba(255, 255, 255, 0.95)',
                         padding: '3rem',
                         borderRadius: '2rem',
                         backdropFilter: 'blur(10px)',
                         boxShadow: '0 20px 60px rgba(0,0,0,0.15)'
                     }}>
-                        <h1 style={{
-                            fontSize: '3.5rem',
+                        <h1 className="text-4xl md:text-6xl text-center md:text-left"
+                        style={{
                             fontWeight: 900,
                             lineHeight: 1.1,
                             marginBottom: '1.5rem',
@@ -91,7 +91,8 @@ export const DemoVibrantCreative: React.FC = () => {
                         }}>
                             Creatividad Sin <span style={{ color: '#ff006e' }}>Límites</span>
                         </h1>
-                        <p style={{
+                        <p className="text-center md:text-left"
+                            style={{
                             fontSize: '1.25rem',
                             color: '#666',
                             marginBottom: '2rem',
@@ -99,7 +100,7 @@ export const DemoVibrantCreative: React.FC = () => {
                         }}>
                             Diseño audaz, colores vibrantes y experiencias que cautivan. Para marcas que se atreven a ser diferentes.
                         </p>
-                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }} className="justify-center md:justify-start">
                             <button style={{
                                 padding: '1rem 2rem',
                                 background: 'linear-gradient(135deg, #ff006e, #8338ec)',

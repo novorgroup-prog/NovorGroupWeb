@@ -1,7 +1,34 @@
-import React from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import { RequestButton } from '../../components/RequestButton';
 
 export const DemoLuxuryPremium: React.FC = () => {
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            setShowMobileMenu(true);
+            document.body.style.overflow = 'hidden';
+        } else {
+            const timer = setTimeout(() => {
+                setShowMobileMenu(false);
+            }, 500);
+            document.body.style.overflow = 'unset';
+            return () => clearTimeout(timer);
+        }
+    }, [mobileMenuOpen]);
+
+    // Cerrar el menú móvil cuando se redimensiona la ventana a tamaño desktop
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768 && mobileMenuOpen) {
+                setMobileMenuOpen(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [mobileMenuOpen]);
 
     return (
         <div style={{
@@ -24,13 +51,84 @@ export const DemoLuxuryPremium: React.FC = () => {
                 color: '#e8e8e8'
             }}>
                 <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#d4af37' }}>LUXE</h1>
-                <div style={{ display: 'flex', gap: '3rem', fontSize: '0.875rem', fontWeight: 500 }}>
+                <div style={{ gap: '3rem', fontSize: '0.875rem', fontWeight: 500 }} className="hidden md:flex">
                     <a href="#" style={{ color: '#e8e8e8', textDecoration: 'none', letterSpacing: '1px' }}>INICIO</a>
                     <a href="#" style={{ color: '#e8e8e8', textDecoration: 'none', letterSpacing: '1px' }}>SERVICIOS</a>
                     <a href="#" style={{ color: '#e8e8e8', textDecoration: 'none', letterSpacing: '1px' }}>CONTACTO</a>
                 </div>
+                <button
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    style={{ color: '#e8e8e8' }}
+                    className="md:hidden"
+                >
+
+                    <i className={`fa-solid ${mobileMenuOpen ? 'fa-xmark' : 'fa-bars'} text-2xl`}></i>
+                </button>
             </nav>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem', position: 'sticky', top: '5rem', right: '2rem', zIndex: 100 }}>
+            {showMobileMenu && (
+                <>
+                    <div
+                        className="md:hidden fixed inset-0 z-30"
+                        style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+                        onClick={() => setMobileMenuOpen(false)}
+                    ></div>
+                    <nav
+                        className="md:hidden border-b fixed top-20 left-0 right-0 z-40 overflow-hidden"
+                        style={{
+                            backgroundColor: 'rgba(15, 14, 14, 0.95)',
+                            borderColor: 'rgba(212, 175, 55, 0.3)',
+                            animation: mobileMenuOpen ? 'slideDown 0.7s ease-out' : 'slideUp 0.7s ease-out',
+                            pointerEvents: mobileMenuOpen ? 'auto' : 'none'
+                        }}
+                    >
+                        <style>{`
+                          @keyframes slideDown {
+                            from {
+                              transform: translateY(-500px);
+                            }
+                            to {
+                              transform: translateY(0);
+                            }
+                          }
+                          @keyframes slideUp {
+                            from {
+                              transform: translateY(0);
+                            }
+                            to {
+                              transform: translateY(-500px);
+                            }
+                          }
+                        `}</style>
+                        <div className="px-4 py-4 space-y-3">
+                            <a
+                                href='#'
+                                className="block py-2 transition-colors"
+                                style={{ color: '#e8e8e8' }}
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                Inicio
+                            </a>
+                            <a
+                                href='#'
+                                className="block py-2 transition-colors"
+                                style={{ color: '#e8e8e8' }}
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                Servicios
+                            </a>
+                            <a
+                                href='#'
+                                className="block py-2 transition-colors"
+                                style={{ color: '#e8e8e8' }}
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                Demos
+                            </a>
+                        </div>
+                    </nav>
+                </>
+            )}
+            <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem', position: 'sticky', top: '5rem', right: '2rem', zIndex: 20 }}>
                 {/* Botón Solicitar */}
                 <RequestButton
                     href="/contacto?design=Consulta por diseño Luxury Premium"
@@ -51,7 +149,7 @@ export const DemoLuxuryPremium: React.FC = () => {
             }}>
                 <div>
                     <p style={{ fontSize: '0.875rem', color: '#d4af37', letterSpacing: '3px', marginBottom: '1rem', fontWeight: 500 }}>BIENVENIDO</p>
-                    <h1 style={{
+                    <h2 style={{
                         fontSize: '4rem',
                         fontWeight: 400,
                         lineHeight: 1.2,
@@ -59,7 +157,7 @@ export const DemoLuxuryPremium: React.FC = () => {
                         letterSpacing: '-1px'
                     }}>
                         Elegancia en <span style={{ color: '#d4af37' }}>Cada Detalle</span>
-                    </h1>
+                    </h2>
                     <p style={{
                         fontSize: '1.125rem',
                         color: '#bbb',
@@ -149,7 +247,7 @@ export const DemoLuxuryPremium: React.FC = () => {
                     }}>
                         Trabajos Destacados
                     </h2>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
                         {['Proyecto A', 'Proyecto B', 'Proyecto C'].map((project, idx) => (
                             <div key={idx} style={{
                                 aspectRatio: '1',

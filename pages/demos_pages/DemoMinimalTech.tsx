@@ -20,11 +20,11 @@ export const DemoMinimalTech: React.FC = () => {
                 alignItems: 'center',
             }}>
                 <div style={{ display: 'flex', maxWidth: '1200px', margin: '0 auto', padding: '2rem 2rem', width: '100%' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'center' }} className="gap-0 md:gap-6">
                         <div>
-                            <h1 style={{ fontSize: '3.5rem', fontWeight: 700, lineHeight: 1.2, marginBottom: '1.5rem' }}>
+                            <h2 style={{ fontSize: '3.5rem', fontWeight: 700, lineHeight: 1.2, marginBottom: '1.5rem' }}>
                                 Soluciones Tech <span style={{ color: '#0066ff' }}>Minimalistas</span>
-                            </h1>
+                            </h2>
                             <p style={{ fontSize: '1.125rem', color: '#666', marginBottom: '2rem', lineHeight: 1.6 }}>
                                 Diseño limpio, funcional y directo al punto. La tecnología sin ruido innecesario.
                             </p>
@@ -63,7 +63,7 @@ export const DemoMinimalTech: React.FC = () => {
                             padding: '3rem',
                             textAlign: 'center',
                             color: '#999'
-                        }}>
+                        }} className="hidden md:inline">
                             <div style={{ fontSize: '4rem' }}>💻</div>
                         </div>
                     </div>
@@ -73,9 +73,9 @@ export const DemoMinimalTech: React.FC = () => {
             {/* Features */}
             <section style={{ padding: '6rem 2rem', backgroundColor: 'white' }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                    <h2 style={{ fontSize: '2.25rem', fontWeight: 700, textAlign: 'center', marginBottom: '4rem' }}>
+                    <h3 style={{ fontSize: '2.25rem', fontWeight: 700, textAlign: 'center', marginBottom: '4rem' }}>
                         Características Principales
-                    </h2>
+                    </h3>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
                         {[
                             { icon: '⚡', title: 'Velocidad', desc: 'Carga en milisegundos' },
@@ -96,9 +96,9 @@ export const DemoMinimalTech: React.FC = () => {
             {/* Pricing */}
             <section style={{ padding: '6rem 2rem', backgroundColor: '#f8f9fa' }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                    <h2 style={{ fontSize: '2.25rem', fontWeight: 700, textAlign: 'center', marginBottom: '4rem' }}>
+                    <h3 style={{ fontSize: '2.25rem', fontWeight: 700, textAlign: 'center', marginBottom: '4rem' }}>
                         Planes Simples
-                    </h2>
+                    </h3>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
                         {[
                             { name: 'Básico', price: '99', features: ['Hasta 5 páginas', 'Dominio incluido', 'SSL gratis'] },
@@ -143,7 +143,7 @@ export const DemoMinimalTech: React.FC = () => {
 
             {/* CTA */}
             <section style={{ padding: '4rem 2rem', backgroundColor: '#0066ff', color: 'white', textAlign: 'center' }}>
-                <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '1rem' }}>¿Listo para empezar?</h2>
+                <h3 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '1rem' }}>¿Listo para empezar?</h3>
                 <p style={{ marginBottom: '2rem', opacity: 0.9 }}>Crea tu presencia online en minutos</p>
                 <button style={{
                     padding: '1rem 2rem',

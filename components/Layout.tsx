@@ -98,7 +98,7 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
             <NavLinkInner to={Route.HOME} theme={currentTheme}>Inicio</NavLinkInner>
             <NavLinkInner to={Route.SERVICES} theme={currentTheme}>Servicios</NavLinkInner>
             <NavLinkInner to={Route.DEMOS} theme={currentTheme}>Demos</NavLinkInner>
-            <NavLinkInner to={Route.CONTACT} theme={currentTheme}>Contacto</NavLinkInner>
+            
             <a
               href={Route.CONTACT}
               className="px-6 py-2.5 rounded-full text-white font-semibold transition-all hover:shadow-lg active:scale-95"
