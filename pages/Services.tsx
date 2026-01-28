@@ -51,21 +51,21 @@ export const Services: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {services.map((service) => (
-            <div key={service.id} className="rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border flex flex-col md:flex-row" style={{ backgroundColor: currentTheme.backgroundColor, borderColor: currentTheme.lineColor }}>
-                <div className="md:w-1/3 p-10 flex items-center justify-center" style={{ backgroundColor: currentTheme.backgroundBlurred }}>
+            <div key={service.id} className="rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border flex flex-col lg:flex-row" style={{ backgroundColor: currentTheme.backgroundColor, borderColor: currentTheme.lineColor }}>
+              <div className="lg:w-1/3 p-10 flex items-center md:justify-center" style={{ backgroundColor: currentTheme.backgroundBlurred }}>
                 <div className="w-20 h-20 rounded-full flex items-center justify-center text-4xl shadow-sm group-hover:scale-110 transition-transform" style={{ backgroundColor: currentTheme.backgroundColor, color: currentTheme.primaryColor }}>
                   <i className={`fa-solid ${service.icon}`}></i>
                 </div>
               </div>
-              <div className="p-8 md:w-2/3 flex flex-col justify-between">
+              <div className="p-8 lg:w-2/3 flex flex-col justify-between">
                 <div>
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-2xl font-bold" style={{ color: currentTheme.textColor }}>{service.title}</h3>
-                    <span className="text-xs font-bold px-3 py-1 rounded-full" style={{ backgroundColor: `${currentTheme.primaryColor}20`, color: currentTheme.primaryColor }}>{service.duration}</span>
+                  <div className="flex justify-between items-start mb-4 flex-wrap sm:flex-nowrap gap-4 sm:gap-0">
+                    <h3 className="text-wrap text-2xl font-bold" style={{ color: currentTheme.textColor }}>{service.title}</h3>
+                    <span className="text-xs text-nowrap font-bold px-3 py-1 rounded-full" style={{ backgroundColor: `${currentTheme.primaryColor}20`, color: currentTheme.primaryColor }}>{service.duration}</span>
                   </div>
                   <p className="mb-6 leading-relaxed" style={{ color: currentTheme.textColor, opacity: 0.85 }}>{service.description}</p>
                 </div>
-                <div className="flex items-center justify-between mt-auto pt-6" style={{ borderColor: currentTheme.lineColor, borderTop: `1px solid ${currentTheme.lineColor}` }}>
+                <div className="flex items-center justify-between mt-auto pt-6 flex-wrap gap-4 sm:flex-nowrap" style={{ borderColor: currentTheme.lineColor, borderTop: `1px solid ${currentTheme.lineColor}` }}>
                   <span className="text-3xl font-extrabold" style={{ color: currentTheme.textColor }}>{service.price}€<span className="text-sm font-medium" style={{ color: currentTheme.textColor, opacity: 0.6 }}>/proyecto</span></span>
                   <button
                     className="px-6 py-3 rounded-xl text-white font-bold transition-all shadow-md hover:shadow-lg"
