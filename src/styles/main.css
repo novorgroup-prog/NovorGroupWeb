@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "./animations.css";
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Zalando Sans Expanded';
+  src: url('/assets/fonts/Zalando_Sans_Expanded/ZalandoSansExpanded-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Zalando Sans Expanded', sans-serif;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F9FAFB;
+}
+

@@ -164,7 +164,7 @@ export const Demos: React.FC = () => {
             <a
               href={Route.CONTACT}
               className="inline-block px-8 py-4 rounded-xl font-bold transition-all hover:shadow-lg"
-              style={{ backgroundColor: currentTheme.backgroundColor, color: currentTheme.primaryColor }}
+              style={{ backgroundColor:  currentTheme.secondaryColor, color: 'white' }}
             >
               Contactar para Diseño Personalizado
             </a>

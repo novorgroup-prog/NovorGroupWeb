@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Bloqueo de rutas técnicas (si existieran)
+# Disallow: /api/
+# Disallow: /admin/
+# Disallow: /_assets/
+Disallow: /node_modules/
+
+# Sitemap
+Sitemap: https://novorgroup.com/sitemap.xml

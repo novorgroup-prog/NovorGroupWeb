@@ -3,7 +3,7 @@ import React from 'react';
 import { Route } from '../constants';
 import { useTheme } from '../src/theme';
 import { useInView } from '../src/hooks/useInView';
-import '../src/styles/animations.css';
+import '../src/styles/main.css';
 
 export const Home: React.FC = () => {
   const { currentTheme } = useTheme();
@@ -24,7 +24,7 @@ export const Home: React.FC = () => {
             <span className="inline-block px-4 py-1.5 rounded-full font-semibold text-sm mb-6 border" style={{ backgroundColor: `${currentTheme.primaryColor}15`, color: currentTheme.primaryColor, borderColor: `${currentTheme.primaryColor}30` }}>
               Desarrollo Web a Medida
             </span>
-            <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight mb-6" style={{ color: currentTheme.textColor }}>
+            <h1 className="text-5xl sm:text-6xl font-bold leading-tight mb-6" style={{ color: currentTheme.textColor }}>
               Webs que venden.<br/><span style={{ color: currentTheme.primaryColor }}>Hechas para tu negocio.</span>
             </h1>
             <p className="text-xl mb-10 leading-relaxed max-w-lg" style={{ color: currentTheme.textColor, opacity: 0.85 }}>
@@ -32,11 +32,11 @@ export const Home: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href={Route.CONTACT}
+                href={Route.DEMOS}
                 className="px-8 py-4 rounded-2xl text-white font-bold text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
                 style={{ backgroundColor: currentTheme.primaryColor }}
               >
-                Solicitar Presupuesto
+                Explora Nuestras Demos
               </a>
               <a 
                 href={Route.CONTACT}

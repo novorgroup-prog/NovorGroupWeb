@@ -89,12 +89,12 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <a href="/" className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white" style={{ backgroundColor: currentTheme.primaryColor }}>
-              <img src="/src/img/logos/novor_Logo_White.png" className="w-5 h-6" alt="Logo" />
+              <img src="/assets/img/logos/novor_Logo_White.png" className="w-5 h-6" alt="Logo" />
             </div>
             <span className="text-2xl font-bold tracking-tight" style={{ color: currentTheme.textColor }}>Novor <span style={{ color: currentTheme.primaryColor }}>Group</span></span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-8">
             <NavLinkInner to={Route.HOME} theme={currentTheme}>Inicio</NavLinkInner>
             <NavLinkInner to={Route.SERVICES} theme={currentTheme}>Servicios</NavLinkInner>
             <NavLinkInner to={Route.DEMOS} theme={currentTheme}>Demos</NavLinkInner>
@@ -121,7 +121,7 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               style={{ color: currentTheme.textColor }}
-              className="md:hidden"
+              className="lg:hidden"
             >
 
               <i className={`fa-solid ${mobileMenuOpen ? 'fa-xmark' : 'fa-bars'} text-2xl`}></i>
@@ -133,12 +133,12 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
       {showMobileMenu && (
         <>
           <div
-            className="md:hidden fixed inset-0 z-30"
+            className="lg:hidden fixed inset-0 z-30"
             style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
             onClick={() => setMobileMenuOpen(false)}
           ></div>
           <nav
-            className="md:hidden border-b fixed top-20 left-0 right-0 z-40 overflow-hidden"
+            className="lg:hidden border-b fixed top-20 left-0 right-0 z-40 overflow-hidden"
             style={{
               backgroundColor: currentTheme.secondaryBackgroundColor,
               borderColor: currentTheme.lineColor,
@@ -215,11 +215,11 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
       </main>
 
       <footer className="pt-16 pb-8" style={{ backgroundColor: currentTheme.secondaryBackgroundColor, color: currentTheme.textColor, transition: 'background-color 0.35s ease, color 0.35s ease' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white" style={{ backgroundColor: currentTheme.primaryColor }}>
-                <img src="/src/img/logos/novor_Logo_White.png" className="w-5 h-6 mx-auto" alt="Logo" />
+                <img src="/assets/img/logos/novor_Logo_White.png" className="w-5 h-6 mx-auto" alt="Logo" />
               </div>
               <span className="text-xl font-bold" style={{ color: currentTheme.textColor }}>Novor Group</span>
             </div>
