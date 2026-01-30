@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { useTheme } from '../src/theme';
 import { Service } from '../types';
+import { Route } from '../constants';
 
 export const Services: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
@@ -86,9 +87,9 @@ export const Services: React.FC = () => {
           <div className="relative z-10 max-w-2xl">
             <h3 className="text-3xl font-bold mb-4">¿Necesitas algo específico?</h3>
             <p className="text-white opacity-90 mb-8 text-lg">Contáctanos para presupuestos personalizados. Valoración gratis de tu proyecto sin compromiso.</p>
-            <button className="bg-white px-8 py-4 rounded-2xl font-bold hover:bg-gray-50 transition-colors shadow-xl" style={{ color: currentTheme.primaryColor }}>
+            <a href={Route.CONTACT} className="bg-white px-8 py-4 rounded-2xl font-bold hover:bg-gray-50 transition-colors shadow-xl" style={{ color: currentTheme.primaryColor }}>
               Agendar Consulta
-            </button>
+            </a>
           </div>
         </div>
       </div>

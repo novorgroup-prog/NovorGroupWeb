@@ -223,7 +223,7 @@ export const Contact: React.FC = () => {
                   className="w-full py-5 rounded-2xl text-white font-bold text-lg shadow-xl transition-all active:scale-95 disabled:opacity-50"
                   style={{ backgroundColor: currentTheme.primaryColor }}
                 >
-                  {status === 'loading' ? 'Enviando...' : 'Solicitar Presupuesto'}
+                  {status === 'loading' ? 'Enviando...' : 'Enviar consulta'}
                 </button>
                 {status === 'error' && (
                   <p className="text-center text-sm font-medium" style={{ color: currentTheme.primaryColor, opacity: 0.8 }}>Hubo un error al enviar el mensaje. Inténtalo de nuevo.</p>
