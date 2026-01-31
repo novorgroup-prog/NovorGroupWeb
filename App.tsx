@@ -11,7 +11,7 @@ import { DemoMinimalTech } from './pages/demos_pages/DemoMinimalTech';
 import { DemoLuxuryPremium } from './pages/demos_pages/DemoLuxuryPremium';
 import { DemoVibrantCreative } from './pages/demos_pages/DemoVibrantCreative';
 import { Route } from './constants';
-import { useRouter } from './src/hooks/useRouter';
+import { useRouter } from './src/router/RouterContext';
 
 const App: React.FC = () => {
   const { currentPath } = useRouter();

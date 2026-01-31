@@ -2,29 +2,46 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import { Route } from '../constants';
 import { ThemeProvider, useTheme } from '../src/theme';
+import { Link } from '../components/Link'
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-const NavLinkInner: React.FC<{ to: string; children: ReactNode; theme: any }> = ({ to, children, theme }) => {
-  const isActive = window.location.pathname === to
+const NavLinkInner: React.FC<{
+  to: string;
+  children: ReactNode;
+  theme: any;
+}> = ({ to, children, theme }) => {
+  const isActive = window.location.pathname === to;
   const [hover, setHover] = useState(false);
+
   return (
-    <a
-      href={to}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+    <Link
+      to={to}
+      onClick={() => {}}
       className="font-medium transition-colors"
-      style={{ 
-        color: isActive ? theme.primaryColor : hover ? `${theme.primaryColor}c6` : theme.textColor,
-        borderBottom: isActive ? hover ? `2px solid ${theme.primaryColor}` : `2px solid ${theme.primaryColor}` : '2px solid transparent',
+      style={{
+        color: isActive
+          ? theme.primaryColor
+          : hover
+          ? `${theme.primaryColor}c6`
+          : theme.textColor,
+        borderBottom: isActive
+          ? `2px solid ${theme.primaryColor}`
+          : '2px solid transparent',
       }}
     >
-      {children}
-    </a>
+      <span
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        {children}
+      </span>
+    </Link>
   );
 };
+
 
 const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
   const { currentTheme, themeMode, setThemeMode } = useTheme();
@@ -87,25 +104,24 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
           borderColor: currentTheme.lineColor
         }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
+          <Link to={Route.HOME} className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white" style={{ backgroundColor: currentTheme.primaryColor }}>
               <img src="/assets/img/logos/novor_Logo_White.png" className="w-5 h-6" alt="Logo" />
             </div>
             <span className="text-2xl font-bold tracking-tight" style={{ color: currentTheme.textColor }}>Novor <span style={{ color: currentTheme.primaryColor }}>Group</span></span>
-          </a>
+          </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
             <NavLinkInner to={Route.HOME} theme={currentTheme}>Inicio</NavLinkInner>
             <NavLinkInner to={Route.SERVICES} theme={currentTheme}>Servicios</NavLinkInner>
             <NavLinkInner to={Route.DEMOS} theme={currentTheme}>Demos</NavLinkInner>
             
-            <a
-              href={Route.CONTACT}
+            <Link to={Route.CONTACT}
               className="px-6 py-2.5 rounded-full text-white font-semibold transition-all hover:shadow-lg active:scale-95"
               style={{ backgroundColor: currentTheme.primaryColor }}
             >
               Solicitar Presupuesto
-            </a>
+            </Link>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -165,46 +181,46 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
               }
             `}</style>
               <div className="px-4 py-4 space-y-3">
-                <a
-                  href={Route.HOME}
+                <Link
+                  to={Route.HOME}
                   className="block py-2 transition-colors"
                   style={{ color: currentTheme.textColor }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Inicio
-                </a>
-                <a
-                  href={Route.SERVICES}
+                </Link>
+                <Link
+                  to={Route.SERVICES}
                   className="block py-2 transition-colors"
                   style={{ color: currentTheme.textColor }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Servicios
-                </a>
-                <a
-                  href={Route.DEMOS}
+                </Link>
+                <Link
+                  to={Route.DEMOS}
                   className="block py-2 transition-colors"
                   style={{ color: currentTheme.textColor }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Demos
-                </a>
-                <a
-                  href={Route.CONTACT}
+                </Link>
+                <Link
+                  to={Route.CONTACT}
                   className="block py-2 transition-colors"
                   style={{ color: currentTheme.textColor }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Contacto
-                </a>
-                <a
-                  href={Route.CONTACT}
+                </Link>
+                <Link
+                  to={Route.CONTACT}
                   className="block w-full py-2.5 rounded-lg text-center text-white font-semibold transition-all mt-4"
                   style={{ backgroundColor: currentTheme.primaryColor }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Solicitar Presupuesto
-                </a>
+                </Link>
               </div>
             </nav>
         </>
@@ -237,19 +253,19 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
           <div>
             <h4 className="text-lg font-bold mb-6" style={{ color: currentTheme.textColor }}>Navegación</h4>
             <ul className="space-y-4">
-              <li><a href={Route.HOME} style={{ color: currentTheme.textColor }} className="transition-colors">Inicio</a></li>
-              <li><a href={Route.SERVICES} style={{ color: currentTheme.textColor }} className="transition-colors">Servicios</a></li>
-              <li><a href={Route.DEMOS} style={{ color: currentTheme.textColor }} className="transition-colors">Demos</a></li>
-              <li><a href={Route.CONTACT} style={{ color: currentTheme.textColor }} className="transition-colors">Contacto</a></li>
+              <li><Link to={Route.HOME} style={{ color: currentTheme.textColor }} className="transition-colors">Inicio</Link></li>
+              <li><Link to={Route.SERVICES} style={{ color: currentTheme.textColor }} className="transition-colors">Servicios</Link></li>
+              <li><Link to={Route.DEMOS} style={{ color: currentTheme.textColor }} className="transition-colors">Demos</Link></li>
+              <li><Link to={Route.CONTACT} style={{ color: currentTheme.textColor }} className="transition-colors">Contacto</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-bold mb-6" style={{ color: currentTheme.textColor }}>Legal</h4>
             <ul className="space-y-4">
-              <li><a href={Route.LEGAL} style={{ color: currentTheme.textColor }} className="transition-colors">Aviso Legal</a></li>
-              <li><a href={Route.LEGAL} style={{ color: currentTheme.textColor }} className="transition-colors">Política de Privacidad</a></li>
-              <li><a href={Route.LEGAL} style={{ color: currentTheme.textColor }} className="transition-colors">Cookies</a></li>
+              <li><Link to={Route.LEGAL} style={{ color: currentTheme.textColor }} className="transition-colors">Aviso Legal</Link></li>
+              <li><Link to={Route.LEGAL} style={{ color: currentTheme.textColor }} className="transition-colors">Política de Privacidad</Link></li>
+              <li><Link to={Route.LEGAL} style={{ color: currentTheme.textColor }} className="transition-colors">Cookies</Link></li>
             </ul>
           </div>
 
@@ -285,9 +301,9 @@ const LayoutContent: React.FC<LayoutProps> = ({ children }) => {
                 <h3 className="text-lg font-bold mb-2">🍪 Cookies y Privacidad</h3>
                 <p className="text-sm opacity-85">
                   Utilizamos cookies para mejorar tu experiencia en nuestro sitio. Al continuar navegando, aceptas nuestra{' '}
-                  <a href={Route.LEGAL} className="underline font-semibold" style={{ color: currentTheme.primaryColor }}>
+                  <Link to={Route.LEGAL} className="underline font-semibold" style={{ color: currentTheme.primaryColor }}>
                     política de privacidad
-                  </a>.
+                  </Link>.
                 </p>
               </div>
               <div className="flex gap-3 flex-shrink-0">

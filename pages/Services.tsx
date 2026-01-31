@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabaseClient';
 import { useTheme } from '../src/theme';
 import { Service } from '../types';
 import { Route } from '../constants';
+import { Link } from '../components/Link';
 
 export const Services: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
@@ -11,7 +12,7 @@ export const Services: React.FC = () => {
 
   const { currentTheme } = useTheme();
 
-  // Ejemplo real de consulta a Supabase
+  /** Ejemplo real de consulta a Supabase
   useEffect(() => {
     const fetchServices = async () => {
       try {
@@ -35,13 +36,14 @@ export const Services: React.FC = () => {
 
     fetchServices();
   }, []);
+  
 
   if (loading) return (
     <div className="flex items-center justify-center min-h-[60vh]">
       <div className="animate-spin rounded-full h-12 w-12 border-b-2" style={{ borderColor: currentTheme.primaryColor }}></div>
     </div>
   );
-
+*/
   return (
     <div className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,7 +53,11 @@ export const Services: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {services.map((service) => (
+          {[
+              { id: 1, title: 'Equipo Full-Stack', description: 'Desarrolladores, diseñadores y especialistas en conversion.', icon: 'fa-code', color: currentTheme.primaryColor },
+              { id: 2, title: 'SEO Desde el Inicio', description: 'Estructura optimizada, velocidad de carga <2s, core web vitals perfectos. Primeras posiciones garantizadas.', icon: 'fa-search', color: currentTheme.secondaryColor },
+              { id: 3, title: 'Diseño que Convierte', description: 'UX/UI basada en tus gustos y necesidades. Cada elemento tiene un objetivo: vender o captar leads.', icon: 'fa-palette', color: currentTheme.accentColor },
+            ].map((service) => (
             <div key={service.id} className="rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border flex flex-col lg:flex-row" style={{ backgroundColor: currentTheme.backgroundColor, borderColor: currentTheme.lineColor }}>
               <div className="lg:w-1/3 p-10 flex items-center md:justify-center" style={{ backgroundColor: currentTheme.backgroundBlurred }}>
                 <div className="w-20 h-20 rounded-full flex items-center justify-center text-4xl shadow-sm group-hover:scale-110 transition-transform" style={{ backgroundColor: currentTheme.backgroundColor, color: currentTheme.primaryColor }}>
@@ -62,12 +68,10 @@ export const Services: React.FC = () => {
                 <div>
                   <div className="flex justify-between items-start mb-4 flex-wrap sm:flex-nowrap gap-4 sm:gap-0">
                     <h3 className="text-wrap text-2xl font-bold" style={{ color: currentTheme.textColor }}>{service.title}</h3>
-                    <span className="text-xs text-nowrap font-bold px-3 py-1 rounded-full" style={{ backgroundColor: `${currentTheme.primaryColor}20`, color: currentTheme.primaryColor }}>{service.duration}</span>
                   </div>
                   <p className="mb-6 leading-relaxed" style={{ color: currentTheme.textColor, opacity: 0.85 }}>{service.description}</p>
                 </div>
                 <div className="flex items-center justify-between mt-auto pt-6 flex-wrap gap-4 sm:flex-nowrap" style={{ borderColor: currentTheme.lineColor, borderTop: `1px solid ${currentTheme.lineColor}` }}>
-                  <span className="text-3xl font-extrabold" style={{ color: currentTheme.textColor }}>{service.price}€<span className="text-sm font-medium" style={{ color: currentTheme.textColor, opacity: 0.6 }}>/proyecto</span></span>
                   <button
                     className="px-6 py-3 rounded-xl text-white font-bold transition-all shadow-md hover:shadow-lg"
                     style={{ backgroundColor: currentTheme.primaryColor }}
@@ -87,9 +91,9 @@ export const Services: React.FC = () => {
           <div className="relative z-10 max-w-2xl">
             <h3 className="text-3xl font-bold mb-4">¿Necesitas algo específico?</h3>
             <p className="text-white opacity-90 mb-8 text-lg">Contáctanos para presupuestos personalizados. Valoración gratis de tu proyecto sin compromiso.</p>
-            <a href={Route.CONTACT} className="bg-white px-8 py-4 rounded-2xl font-bold hover:bg-gray-50 transition-colors shadow-xl" style={{ color: currentTheme.primaryColor }}>
+            <Link to={Route.CONTACT} className="bg-white px-8 py-4 rounded-2xl font-bold hover:bg-gray-50 transition-colors shadow-xl" style={{ color: currentTheme.primaryColor }}>
               Agendar Consulta
-            </a>
+            </Link>
           </div>
         </div>
       </div>
